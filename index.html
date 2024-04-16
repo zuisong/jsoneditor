@@ -3,9 +3,12 @@
 
 <head>
     <title>JSONEditor</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" type="image/png" href="./favicon.png">
+    <link rel="manifest" href="./manifest.json" />
     <style>
         /* load one or multiple themes */
-        @import 'https://unpkg.com/vanilla-jsoneditor@0.23.1/themes/jse-theme-dark.css';
+        @import './vanilla-jsoneditor@0.23.1/jse-theme-dark.css';
 
         #jsoneditor {
             position: fixed;
@@ -18,34 +21,39 @@
 </head>
 
 <body>
-<div id="jsoneditor" class="jse-theme-dark"></div>
+    <div id="jsoneditor" class="jse-theme-dark"></div>
 
-<script type="module">
-    //   import { JSONEditor } from 'vanilla-jsoneditor/standalone.js'
-
-    // Or use it through a CDN (not recommended for use in production):
-    import {JSONEditor} from 'https://unpkg.com/vanilla-jsoneditor@0.23.1/standalone.js'
-    // import { JSONEditor } from 'https://cdn.jsdelivr.net/npm/vanilla-jsoneditor/standalone.js'
-
-    let content = {
-        text: "",
-        json: undefined
-    }
-
-    const editor = new JSONEditor({
-        target: document.getElementById('jsoneditor'),
-        props: {
-            content,
-            onChange: (updatedContent, previousContent, {contentErrors, patchResult}) => {
-                // content is an object { json: unknown } | { text: string }
-                console.log('onChange', {updatedContent, previousContent, contentErrors, patchResult})
-                content = updatedContent
-            }
+    <script type="module">
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("./worker.js")
         }
-    })
 
 
-</script>
+        //   import { JSONEditor } from 'vanilla-jsoneditor/standalone.js'
+
+        // Or use it through a CDN (not recommended for use in production):
+        import { JSONEditor } from './vanilla-jsoneditor@0.23.1/standalone.js'
+        // import { JSONEditor } from 'https://cdn.jsdelivr.net/npm/vanilla-jsoneditor/standalone.js'
+
+        let content = {
+            text: "",
+            json: undefined
+        }
+
+        const editor = new JSONEditor({
+            target: document.getElementById('jsoneditor'),
+            props: {
+                content,
+                onChange: (updatedContent, previousContent, { contentErrors, patchResult }) => {
+                    // content is an object { json: unknown } | { text: string }
+                    console.log('onChange', { updatedContent, previousContent, contentErrors, patchResult })
+                    content = updatedContent
+                }
+            }
+        })
+
+
+    </script>
 
 </body>
 
