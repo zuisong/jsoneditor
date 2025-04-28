@@ -11,9 +11,7 @@ self.addEventListener("fetch", (event) => {
   }
 
   // Use same-origin for same origin, attempt no-cors for rest
-  const mode = event.request.url.startsWith(self.location.origin)
-    ? "same-origin"
-    : "no-cors"
+  const mode = "no-cors"
 
   // Respond with fresh or cached response
   event.respondWith(
