@@ -13,10 +13,10 @@
       "sizes": "512x512"
     }
   ],
-  "id": "/?source=pwa",
-  "start_url": "/?source=pwa",
+  "id": "/jsoneditor/?source=pwa",
+  "start_url": "/jsoneditor/?source=pwa",
   "background_color": "#3367D6",
   "display": "standalone",
-  "scope": "/",
+  "scope": "/jsoneditor/",
   "theme_color": "#3367D6"
 }
